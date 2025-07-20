@@ -87,29 +87,6 @@ services:
     security_opt:
       - no-new-privileges:true
 
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    restart: unless-stopped
-    ports:
-      - "${JENKINS_PORT:-8081}:8080"
-      - "${JENKINS_AGENT_PORT:-50000}:50000"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-    networks:
-      - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-          cpus: '1.0'
-        reservations:
-          memory: 512M
-    security_opt:
-      - no-new-privileges:true
-    environment:
-      - JAVA_OPTS=-Djava.awt.headless=true -Xmx1g
-
 networks:
   app-network:
     driver: bridge
@@ -119,7 +96,5 @@ networks:
       com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
 
 volumes:
-  jenkins_home:
-    driver: local
   redis_data:
     driver: local

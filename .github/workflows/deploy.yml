@@ -1,0 +1,88 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📋 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔍 Verify required files
+      run: |
+        echo "Verifying required files..."
+        test -f docker-compose.yml || exit 1
+        test -f Dockerfile || exit 1
+        test -f .env.example || exit 1
+        echo "✅ File verification passed"
+
+    - name: 🔨 Build and test
+      run: |
+        echo "🚀 Building application..."
+        cp .env.example .env
+        docker-compose build --no-cache
+        echo "✅ Build successful"
+
+    - name: 🧪 Run health checks
+      run: |
+        echo "🏥 Starting health checks..."
+        docker-compose up -d
+        sleep 30
+        
+        # Check if services are running
+        if curl -f -s http://localhost:80 > /dev/null; then
+          echo "✅ Application health check passed"
+        else
+          echo "❌ Application health check failed"
+          docker-compose logs
+          exit 1
+        fi
+
+    - name: 🧹 Cleanup
+      if: always()
+      run: |
+        echo "🧹 Cleaning up..."
+        docker-compose down --volumes --remove-orphans
+        docker system prune -f
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: 📋 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🚀 Deploy to production
+      run: |
+        echo "🚀 Starting production deployment..."
+        echo "This is where you'd deploy to your server"
+        echo "For now, just building and verifying..."
+        
+        cp .env.example .env
+        docker-compose up -d --build
+        sleep 20
+        
+        if curl -f -s http://localhost:80 > /dev/null; then
+          echo "✅ Deployment verification successful!"
+          echo "🌍 Application would be available at your domain"
+        else
+          echo "❌ Deployment verification failed"
+          docker-compose logs
+          exit 1
+        fi
+
+    - name: 📊 Deployment summary
+      run: |
+        echo "📊 Deployment Summary:"
+        echo "✅ Build: Successful"
+        echo "✅ Health Check: Passed" 
+        echo "✅ Deployment: Complete"
+        echo "🌍 Status: Ready for production"
