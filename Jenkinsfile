@@ -28,7 +28,7 @@ pipeline {
                 echo '🔨 Building application...'
                 sh '''
                     chmod +x scripts/build.sh && ./scripts/build.sh
-                    docker-compose build --no-cache
+                    docker compose build --no-cache
                     echo "✅ Build completed successfully"
                 '''
             }
@@ -85,7 +85,7 @@ pipeline {
             echo '❌ Pipeline failed! Cleaning up...'
             sh '''
                 echo "📋 Service logs:"
-                docker-compose logs --tail=50 || true
+                docker compose logs --tail=50 || true
                 chmod +x scripts/stop.sh && ./scripts/stop.sh || true
             '''
         }
