@@ -1,8 +1,6 @@
-// frontend/next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable standalone output for smaller Docker images
-  output: 'standalone',
+  // Standalone output removed - not needed for Render
   
   // Disable telemetry for faster builds
   experimental: {
