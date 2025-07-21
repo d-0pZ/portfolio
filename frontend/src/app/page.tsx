@@ -40,7 +40,7 @@ export default function Home() {
                 Hello, I&apos;m
               </h2>
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
-                <span className="text-gradient">Your Name</span>
+                <span className="text-gradient">Muneer Ali</span>
               </h1>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 mb-6">
                 DevOps & Software Engineer

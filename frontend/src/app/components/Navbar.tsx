@@ -86,7 +86,7 @@ export default function Navbar() {
                 <span className="text-white font-bold text-sm">YN</span>
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                Your<span className="text-gradient">Name</span>
+                Muneer<span className="text-gradient">Ali</span>
               </span>
             </Link>
           </motion.div>

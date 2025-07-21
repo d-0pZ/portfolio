@@ -9,39 +9,39 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono", 
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Your Name | DevOps & Software Engineer",
-    template: "%s | Your Name"
+    default: "Muneer Ali | DevOps & Software Engineer",
+    template: "%s | Muneer Ali"
   },
   description: "DevOps & Software Engineer specializing in cloud infrastructure, CI/CD pipelines, and modern web applications. Building scalable solutions with cutting-edge technology.",
   keywords: ["DevOps", "Software Engineer", "Cloud", "AWS", "Docker", "Kubernetes", "CI/CD", "React", "Next.js"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
+  authors: [{ name: "Muneer Ali" }],
+  creator: "Muneer Ali",
   metadataBase: new URL('https://m00n-eer.onrender.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://m00n-eer.onrender.com',
-    title: 'Your Name | DevOps & Software Engineer',
+    title: 'Muneer Ali | DevOps & Software Engineer',
     description: 'DevOps & Software Engineer specializing in cloud infrastructure and modern web applications.',
-    siteName: 'Your Name Portfolio',
+    siteName: 'm00n-eer',
     images: [
       {
         url: '/og-image.jpg', // You'll need to add this image
         width: 1200,
         height: 630,
-        alt: 'Your Name - DevOps & Software Engineer',
+        alt: 'Muneer Ali - DevOps & Software Engineer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Name | DevOps & Software Engineer',
+    title: 'Muneer Ali | DevOps & Software Engineer',
     description: 'DevOps & Software Engineer specializing in cloud infrastructure and modern web applications.',
     images: ['/og-image.jpg'],
     creator: '@yourusername', // Update with your Twitter handle
